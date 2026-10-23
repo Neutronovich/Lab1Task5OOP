@@ -3,7 +3,6 @@ using Lab1.Core.Parsing;
 
 namespace Lab1.Core;
 
-/// <summary>Етап 1: синтаксичний аналіз за допомогою ANTLR4 з локалізацією помилок.</summary>
 public static class ExpressionParser
 {
     public static Node Parse(string text)
