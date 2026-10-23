@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Lab1.Core</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Antlr4.Runtime.Standard" Version="4.13.1" />
+    <PackageReference Include="Antlr4BuildTasks" Version="12.8" PrivateAssets="all" />
+    <Antlr4 Include="Expr.g4">
+      <Package>Lab1.Core.Parsing</Package>
+      <Visitor>true</Visitor>
+      <Listener>false</Listener>
+    </Antlr4>
+  </ItemGroup>
+
+</Project>

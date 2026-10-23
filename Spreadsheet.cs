@@ -7,18 +7,15 @@ public sealed class Cell
     public string Raw = "";
     public Node? Ast;
     public FormulaException? Error;
-    public object? Value;   // BigInteger або bool; null — порожня клітинка
-    internal int State;     // 0 — не обчислена, 1 — обчислюється, 2 — готово
+    public object? Value;   
+    internal int State;    
 
     public string Display => Error != null ? "#ПОМИЛКА" : Spreadsheet.Format(Value);
 }
 
 public sealed class Spreadsheet
 {
-    /// <summary>
-    /// true — результат кожного виразу обов'язково логічний (як вимагає умова для варіантів 20–81).
-    /// false — додатково дозволені клітинки-дані з цілими числами.
-    /// </summary>
+    
     public bool StrictLogical { get; set; } = false;
 
     private readonly List<List<Cell>> _rows = new();
@@ -38,14 +35,13 @@ public sealed class Spreadsheet
         }
     }
 
-    /// <summary>Записує текст виразу в клітинку й перераховує всю таблицю.</summary>
+  
     public void SetRaw(int r, int c, string text)
     {
         _rows[r][c].Raw = text;
         Recalculate();
     }
 
-    // ---------- Адреси клітинок ----------
     public static string ColName(int c)
     {
         string s = "";
@@ -78,10 +74,8 @@ public sealed class Spreadsheet
         _ => v.ToString() ?? ""
     };
 
-    // ---------- Два етапи: синтаксична перевірка, потім обчислення ----------
     public void Recalculate()
     {
-        // Етап 1: синтаксичний аналіз усіх клітинок
         foreach (var row in _rows)
             foreach (var cell in row)
             {
@@ -91,7 +85,6 @@ public sealed class Spreadsheet
                 catch (FormulaException e) { cell.Error = e; cell.State = 2; }
             }
 
-        // Етап 2: обчислення значень
         foreach (var row in _rows)
             foreach (var cell in row)
                 Resolve(cell, null);
