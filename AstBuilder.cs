@@ -4,7 +4,6 @@ using Lab1.Core.Parsing;
 
 namespace Lab1.Core;
 
-/// <summary>Перетворює дерево розбору ANTLR на AST, яке обчислює Spreadsheet.</summary>
 internal sealed class AstBuilder : ExprBaseVisitor<Node>
 {
     private static Node Make(ParserRuleContext c, NodeKind kind) => new()
