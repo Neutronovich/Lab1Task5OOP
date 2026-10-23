@@ -6,7 +6,6 @@ public enum Op { Plus, Minus, Not, And, Or, Eqv, Eq, Lt, Gt }
 
 public enum NodeKind { Num, Bool, Ref, Unary, Binary }
 
-/// <summary>Вузол абстрактного синтаксичного дерева виразу.</summary>
 public sealed class Node
 {
     public NodeKind Kind;
@@ -19,7 +18,6 @@ public sealed class Node
     public int Pos, Len;
 }
 
-/// <summary>Помилка виразу з локалізацією (позиція та довжина фрагмента).</summary>
 public sealed class FormulaException : Exception
 {
     public int Pos { get; }
